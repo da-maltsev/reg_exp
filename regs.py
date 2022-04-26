@@ -2,7 +2,7 @@ import re
 from pprint import pprint
 # читаем адресную книгу в формате CSV в список contacts_list
 import csv
-with open("phonebook_raw.csv") as f:
+with open("phonebook_raw.csv", encoding='utf-8') as f:
   rows = csv.reader(f, delimiter=",")
   contacts_list = list(rows)
 # pprint(contacts_list)
@@ -40,11 +40,8 @@ class Reg_exp:
             i[5] = j[5]
           if i[6] == '':
             i[6] = j[6]
-    contacts_list_upd = list()
-    for card in contacts_list:
-      if card not in contacts_list_upd:
-        contacts_list_upd.append(card)
-    return contacts_list_upd
+          contacts_list.remove(j)
+    return contacts_list
 
 # Создаем переменные с регулярными выражениями
 number_pattern_raw = r'(\+7|8)(\s*)(\(*)(\d{3})(\)*)(\s*)' \
